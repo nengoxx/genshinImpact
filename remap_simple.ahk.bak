@@ -1,0 +1,89 @@
+;----------------------------------------------------------------------
+; PoE Flasks macro for AutoHotKey
+;
+; Keys used and monitored:
+; alt+f12 - activate automatic flask usage
+; right mouse button - primary attack skills
+; 1-5 - number keys to manually use a specific flask
+; ` (backtick) - use all flasks, now
+; "e" and "q" for casting buffs
+; Note - the inventory buttons assume a starting location based on screen
+; resolution - you'll need to update some locations, see below.
+; Alt+c to Ctrl-Click every location in the (I)nventory screen.
+; Alt+m - Allow setting stash tab size as normal (12x12) or large (24x24)
+; Alt+g - Get the current screen coordinates of the mouse pointer.
+; Alt+s - Swap a skill gem with an alternate.
+;----------------------------------------------------------------------
+#IfWinActive Path of Exile
+#SingleInstance force
+#NoEnv
+#Warn
+#Persistent
+
+botting := false
+
+~F5::
+	botting := not botting
+	return
+
+
+  	
+ ~WheelUp::
+	; trigger 2 spells with middle mouse button
+	if (UseFlasks && (WUButtonTrigger1 <> 0)) {
+ 		Send %WUButtonTrigger1%
+ 		if (WUButtonTrigger2 <> 0){
+ 			Send %WUButtonTrigger2%
+ 		}
+ 	}
+	if (UseFlasks) {
+		Send w
+	}
+ 	return
+ 	
+ ~WheelDown::
+ 	; trigger 2 spells with middle mouse button
+ 	if (UseFlasks && (WDButtonTrigger1 <> 0)) {
+ 		Send %WDButtonTrigger1%
+ 		if (WDButtonTrigger2 <> 0){
+ 			Send %WDButtonTrigger2%
+ 		}
+ 	}
+	if (UseFlasks) {
+		MouseClick, Left
+		Random, VariableDelay, -99, 99
+		Sleep, %VariableDelay%
+		MouseClick, Right
+		Random, VariableDelay, -99, 99
+		Sleep, %VariableDelay%
+		MouseClick, Left
+		Random, VariableDelay, -99, 99
+		Sleep, %VariableDelay%
+	}
+ 	return
+ 
+~WheelDown::
+	if (botting) {
+		SetTimer, HoldClick, -1 ;-1 to run once
+	}
+	return
+
+HoldClick:
+    kDown := A_TickCount
+    While ((A_TickCount - kDown) < 100)
+    {
+        SendInput, {LButton down}
+        Random, VariableDelay, -50, 50
+		Sleep, %VariableDelay%
+		MouseClick, Right
+		Random, VariableDelay, -50, 50
+		Sleep, %VariableDelay%
+		SendInput, {LButton up}
+        Random, VariableDelay, -50, 50
+		Sleep, %VariableDelay%
+    }
+	SendInput, {LButton up}
+Return
+
+
+#IfWinActive
