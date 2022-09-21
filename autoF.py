@@ -58,6 +58,7 @@ def main():
     global BarSpam
     if __name__== "__main__" :
         keyboard.on_press_key('º',toggleF)
+        keyboard.on_press_key('tab',toggleF)
         keyboard.on_press_key('ctrl',toggleBarOn)
         keyboard.on_release_key('ctrl',toggleBarOff)
         while True:
