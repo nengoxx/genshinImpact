@@ -65,10 +65,10 @@ def main():
             while (get_active_window()):
                 if BarSpam:
                     pyautogui.press("Space")
-                    pyautogui.sleep(randint(10, 400)/1000)
+                    pyautogui.sleep(randint(75, 300)/1000)
                 if pressed_f:
                     pyautogui.press("f")
-                    pyautogui.sleep(randint(10, 400)/1000)
+                pyautogui.sleep(randint(75, 300)/1000)
                     #time.sleep(randint(10, 400)/1000)
 
 
