@@ -21,6 +21,11 @@ def toggleF(kb_event_info):
     global pressed_f
     pressed_f = not pressed_f
     showText()
+
+def stopF(kb_event_info):
+    global pressed_f
+    pressed_f = False
+    showText()
     
 def toggleBarOn(kb_event_info):
     global BarSpam
@@ -58,17 +63,20 @@ def main():
     global BarSpam
     if __name__== "__main__" :
         keyboard.on_press_key('º',toggleF)
-        keyboard.on_press_key('tab',toggleF)
+        #keyboard.on_press_key('tab',toggleF)
+        keyboard.on_press_key('enter',stopF)
+        keyboard.on_press_key('l',stopF)
         keyboard.on_press_key('ctrl',toggleBarOn)
         keyboard.on_release_key('ctrl',toggleBarOff)
         while True:
+            pyautogui.sleep(randint(150, 300)/1000)
             while (get_active_window()):
                 if BarSpam:
                     pyautogui.press("Space")
-                    pyautogui.sleep(randint(75, 300)/1000)
+                    pyautogui.sleep(randint(150, 300)/1000)
                 if pressed_f:
                     pyautogui.press("f")
-                pyautogui.sleep(randint(75, 300)/1000)
+                pyautogui.sleep(randint(150, 250)/1000)
                     #time.sleep(randint(10, 400)/1000)
 
 
