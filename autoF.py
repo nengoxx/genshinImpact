@@ -2,6 +2,7 @@ from random import randint
 from time import sleep
 import pyautogui
 import keyboard
+from pynput import mouse
 import tkinter
 from win32gui import GetWindowText, GetForegroundWindow
 import time
@@ -35,6 +36,13 @@ def toggleBarOff(kb_event_info):
     global BarSpam
     BarSpam = False
 
+def on_click(x, y, button, pressed):
+    if pressed:
+        if (button == mouse.Button.x1) or (button == mouse.Button.x1):
+            toggleF(None)
+            return
+        else:
+            return
 
 def showText():
     global pressed_f
@@ -50,7 +58,10 @@ def showText():
         label.pack()
         label.update()
     else:
+        label.destroy()
         label.master.destroy()
+        label.master = None
+        label = None
 
 
 
@@ -68,12 +79,14 @@ def main():
         keyboard.on_press_key('l',stopF)
         keyboard.on_press_key('ctrl',toggleBarOn)
         keyboard.on_release_key('ctrl',toggleBarOff)
+        listener = mouse.Listener(on_click=on_click)
+        listener.start()
         while True:
             pyautogui.sleep(randint(150, 300)/1000)
             while (get_active_window()):
                 if BarSpam:
                     pyautogui.press("Space")
-                    pyautogui.sleep(randint(150, 300)/1000)
+                    pyautogui.sleep(randint(300, 600)/1000)
                 if pressed_f:
                     pyautogui.press("f")
                 pyautogui.sleep(randint(150, 250)/1000)
