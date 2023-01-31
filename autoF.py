@@ -58,10 +58,13 @@ def showText():
         label.pack()
         label.update()
     else:
-        label.destroy()
-        label.master.destroy()
-        label.master = None
-        label = None
+        try:
+            label.destroy()
+            label.master.destroy()
+            label.master = None
+            label = None
+        except:
+            return
 
 
 
