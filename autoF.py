@@ -64,6 +64,7 @@ def showText():
             label.master = None
             label = None
         except:
+            label = None
             return
 
 
