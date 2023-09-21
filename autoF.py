@@ -17,7 +17,7 @@ pressed_f = False
 BarSpam = False
 LeftSpam = False
 label = None
-windowName = "Genshin Impact"
+windowName = ["Genshin Impact","Honkai: Star Rail"]
 
 
 def toggleF(kb_event_info):
@@ -81,7 +81,7 @@ def showText(itext = 'autoF'):
 
 
 def get_active_window():
-    return (GetWindowText(GetForegroundWindow()) == windowName)
+    return (GetWindowText(GetForegroundWindow()) in windowName)
 
 
 def main():
