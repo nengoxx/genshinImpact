@@ -17,8 +17,23 @@ pressed_f = False
 BarSpam = False
 LeftSpam = False
 label = None
-windowName = ["Genshin Impact","Honkai: Star Rail"]
+#windowName = ["Genshin Impact","Honkai: Star Rail"]
+gi = False
+hsr = False
 
+
+def get_active_window():
+    global gi, hsr
+    if GetWindowText(GetForegroundWindow()) == "Genshin Impact":
+        gi = True
+        return True
+    if GetWindowText(GetForegroundWindow()) == "Honkai: Star Rail":
+        hsr = True
+        return True
+    gi = False
+    hsr = False
+    return False
+    #return (GetWindowText(GetForegroundWindow()) in windowName)
 
 def toggleF(kb_event_info):
     global pressed_f
@@ -79,14 +94,11 @@ def showText(itext = 'autoF'):
             return
 
 
-
-def get_active_window():
-    return (GetWindowText(GetForegroundWindow()) in windowName)
-
-
 def main():
     global pressed_f
     global BarSpam
+    global gi
+    global hsr
     if __name__== "__main__" :
         keyboard.on_press_key('º',toggleF)
         #keyboard.on_press_key('tab',toggleF)
@@ -99,10 +111,11 @@ def main():
         while True:
             pyautogui.sleep(randint(150, 300)/1000)
             while (get_active_window()):
-                if BarSpam:
+                if BarSpam or hsr:
                     pyautogui.press("Space")
                     pyautogui.sleep(randint(300, 600)/1000)
-                    continue
+                    if not hsr:
+                        continue
                 if LeftSpam:
                     pyautogui.click()
                     pyautogui.sleep(randint(150, 300)/1000)
