@@ -111,7 +111,7 @@ def main():
         while True:
             pyautogui.sleep(randint(150, 300)/1000)
             while (get_active_window()):
-                if BarSpam or hsr:
+                if BarSpam or (hsr and pressed_f):
                     pyautogui.press("Space")
                     pyautogui.sleep(randint(300, 600)/1000)
                     if not hsr:
