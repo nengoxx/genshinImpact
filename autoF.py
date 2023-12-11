@@ -118,7 +118,10 @@ def main():
                         continue
                 if LeftSpam:
                     pyautogui.click()
-                    pyautogui.sleep(randint(150, 300)/1000)
+                    if (hsr):
+                        pyautogui.sleep(randint(500, 600)/1000)
+                    else:
+                        pyautogui.sleep(randint(150, 300)/1000)
                     continue
                 if pressed_f:
                     pyautogui.press("f")
