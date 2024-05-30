@@ -20,18 +20,23 @@ label = None
 #windowName = ["Genshin Impact","Honkai: Star Rail"]
 gi = False
 hsr = False
+ww = False
 
 
 def get_active_window():
-    global gi, hsr
+    global gi, hsr, ww
     if GetWindowText(GetForegroundWindow()) == "Genshin Impact":
         gi = True
+        return True
+    if GetWindowText(GetForegroundWindow()) == "Wuthering Waves  ":
+        ww = True
         return True
     if GetWindowText(GetForegroundWindow()) == "Honkai: Star Rail":
         hsr = True
         return True
     gi = False
     hsr = False
+    ww = False
     return False
     #return (GetWindowText(GetForegroundWindow()) in windowName)
 
@@ -99,6 +104,7 @@ def main():
     global BarSpam
     global gi
     global hsr
+    global ww
     if __name__== "__main__" :
         keyboard.on_press_key('º',toggleF)
         #keyboard.on_press_key('tab',toggleF)
@@ -113,9 +119,20 @@ def main():
             while (get_active_window()):
                 if BarSpam or (hsr and pressed_f):
                     pyautogui.press("Space")
-                    pyautogui.sleep(randint(300, 600)/1000)
+                    pyautogui.sleep(randint(300, 500)/1000)
                     if not hsr:
                         continue
+                    else:
+                        pyautogui.press("5")
+                        pyautogui.sleep(randint(50, 150)/1000)
+                        pyautogui.press("4")
+                        pyautogui.sleep(randint(50, 150)/1000)
+                        pyautogui.press("3")
+                        pyautogui.sleep(randint(50, 150)/1000)
+                        pyautogui.press("2")
+                        pyautogui.sleep(randint(50, 150)/1000)
+                        pyautogui.press("1")
+                        pyautogui.sleep(randint(50, 150)/1000)
                 if LeftSpam:
                     pyautogui.click()
                     if (hsr):
