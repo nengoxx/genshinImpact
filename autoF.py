@@ -90,9 +90,9 @@ def showText(itext = 'autoF'):
         label.update()
     else:
         try:
-            label.destroy()
             label.master.destroy()
             label.master = None
+            label.destroy()
             label = None
         except:
             label = None
