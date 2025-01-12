@@ -68,7 +68,7 @@ def on_click(x, y, button, pressed):
         if (button == mouse.Button.x1):
             toggleF(None)
             return
-        elif (button == mouse.Button.x2):
+        elif (button == mouse.Button.x2 or button == mouse.Button.middle):
             toggleLeftClick(None)
             return
         else:
@@ -96,7 +96,7 @@ def showText(itext = 'autoF'):
             label = None
         except:
             label = None
-            return
+    return
 
 
 def main():
@@ -110,8 +110,8 @@ def main():
         #keyboard.on_press_key('tab',toggleF)
         keyboard.on_press_key('enter',stopF)
         keyboard.on_press_key('l',stopF)
-        keyboard.on_press_key('ctrl',toggleBarOn)
-        keyboard.on_release_key('ctrl',toggleBarOff)
+        #keyboard.on_press_key('ctrl',toggleBarOn) # toggle spacebar spam
+        #keyboard.on_release_key('ctrl',toggleBarOff)
         listener = mouse.Listener(on_click=on_click)
         listener.start()
         while True:
